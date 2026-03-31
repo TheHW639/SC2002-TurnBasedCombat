@@ -1,860 +1,453 @@
 classDiagram
 direction TB
     class Difficulty {
-	    -combatWaves : Entity_Wave[]
-		-currentWave : Int
-	    +getAllWaves()
-		+getNextWave()
-	    +addCombatWave()
-		+removeCombatWave()
+        -combatWaves : EntityWave[]
+        -currentWave : int
+        +getAllWaves()
+        +getNextWave()
+        +addCombatWave()
+        +removeCombatWave()
     }
 
     class Easy {
-	    -combatWaves : Entity_Wave[]
-		-currentWave : Int
+        -combatWaves : EntityWave[]
+        -currentWave : int
     }
 
     class Medium {
-	    -combatWaves : Entity_Wave[]
-		-currentWave : Int
+        -combatWaves : EntityWave[]
+        -currentWave : int
     }
 
     class Hard {
-	    -combatWaves : Entity_Wave[]
-		-currentWave : Int
+        -combatWaves : EntityWave[]
+        -currentWave : int
     }
 
     class Entities {
-	    -playerControl : Boolean
-	    -ongoingSpecialStatus : specialStatus[]
-	    +action()
+        -playerControl : boolean
+        -ongoingSpecialStatus : SpecialStatus[]
+        +action()
     }
 
-    class Player_Class {
-	    -playerControl : Boolean
-	    -bag : Item_Bag
-	    -startingNumOfItems : Int
-	    -specialSkillName : String
-		-specialSkillCD : Int
-	    +useItem()
-	    +gainItem()
-	    +loseItem()
-	    +defend()
-	    +specialSkill(Enemy_type)
-		+getSpecialSkillCD()
-		+getSpecialSkillName()
-		+setSpecialSkillCD()
-	    +action()
+    class PlayerClass {
+        -playerControl : boolean
+        -bag : ItemBag
+        -startingNumOfItems : int
+        -specialSkillName : String
+        -specialSkillCD : int
+        +useItem()
+        +gainItem()
+        +loseItem()
+        +defend()
+        +specialSkill(EnemyType)
+        +getSpecialSkillCD()
+        +getSpecialSkillName()
+        +setSpecialSkillCD()
+        +action()
     }
 
-    class Enemy_Type {
-	    -playerControl : Boolean
-	    +action()
+    class EnemyType {
+        -playerControl : boolean
+        +action()
     }
 
-    class HP_Attribute {
-	    -hp : Int
-	    -curHP : Int
-	    +getHP()
-	    +setHP()
-	    +changeHP()
+    class HPAttribute {
+        -hp : int
+        -curHP : int
+        +getHP()
+        +setHP()
+        +changeHP()
     }
 
-    class Attack_Attribute {
-	    -attack : Int
-	    +getAttack()
-	    +setAttack()
-	    +changeAttack()
+    class AttackAttribute {
+        -attack : int
+        +getAttack()
+        +setAttack()
+        +changeAttack()
     }
 
-    class Defence_Attribute {
-	    -defence : Int
-	    +getDefence()
-	    +setDefence()
-	    +changeDefence()
+    class DefenceAttribute {
+        -defence : int
+        +getDefence()
+        +setDefence()
+        +changeDefence()
     }
 
-    class Speed_Attribute {
-	    -speed : Int
-	    +getSpeed()
-	    +setSpeed()
-	    +changeSpeed()
+    class SpeedAttribute {
+        -speed : int
+        +getSpeed()
+        +setSpeed()
+        +changeSpeed()
     }
 
-	class isAlive {
-		-aliveStatus : Boolean
-		+getAliveStatus()
-		+setAliveStatus()
-	}
+    class IsAlive {
+        -aliveStatus : boolean
+        +getAliveStatus()
+        +setAliveStatus()
+    }
 
     class Warrior {
-	    -hp : HP_Attribute
-	    -attack : Attack_Attribute
-	    -defence : Defence_Attribute
-	    -speed : Speed_Attribute
-	    -startingNumOfItems : Int
-	    -specialSkillName : String
-		-specialSkillCD : Int
-	    +specialSkill(Enemy_type)
-	    +action()
+        -hp : HPAttribute
+        -attack : AttackAttribute
+        -defence : DefenceAttribute
+        -speed : SpeedAttribute
+        -startingNumOfItems : int
+        -specialSkillName : String
+        -specialSkillCD : int
+        +specialSkill(EnemyType)
+        +action()
     }
 
     class Wizard {
-	    -hp : HP_Attribute
-	    -attack : Attack_Attribute
-	    -defence : Defence_Attribute
-	    -speed : Speed_Attribute
-	    -startingNumOfItems : Int
-	    -specialSkillName : String
-		-specialSkillCD : Int
-	    +specialSkill(Enemy_type)
-	    +action()
+        -hp : HPAttribute
+        -attack : AttackAttribute
+        -defence : DefenceAttribute
+        -speed : SpeedAttribute
+        -startingNumOfItems : int
+        -specialSkillName : String
+        -specialSkillCD : int
+        +specialSkill(EnemyType)
+        +action()
     }
 
     class Goblin {
-	    -hp : HP_Attribute
-	    -attack : Attack_Attribute
-	    -defence : Defence_Attribute
-	    -speed : Speed_Attribute
-	    +action()
+        -hp : HPAttribute
+        -attack : AttackAttribute
+        -defence : DefenceAttribute
+        -speed : SpeedAttribute
+        +action()
     }
 
     class Wolf {
-	    -hp : HP_Attribute
-	    -attack : Attack_Attribute
-	    -defence : Defence_Attribute
-	    -speed : Speed_Attribute
-	    +action()
+        -hp : HPAttribute
+        -attack : AttackAttribute
+        -defence : DefenceAttribute
+        -speed : SpeedAttribute
+        +action()
     }
 
-    class specialStatus {
-	    -statusName : String
-	    -statusDuration : Int
-	    -curStatusDuration : Int
-	    -effectedEntity : Entities
-	    -priority : Int
-		-hpModifier : HP_Modifier
-		-attackModifier : Attack_Modifier
-		-defenceModifier : Defence_Modifier
-		-speedModifier : Speed_Modifier
-		-incomingDamageModifier : Incoming_Dmg_Modifier
-		-outcomingDamageModifier : Outgoing_Dmg_Modifier
-	    +onHit()
-		+onStartTurn()
-		+onAllStartTurn()
-		+onStartRound()
-		+onEndTurn()
-		+onAllEndTurn()
-		+onEndRound()
-		+onDeath()
-		+onExpire()
-		+onInfliction()
-	    +getStatusDuration()
-	    +getCurStatusDuration()
-	    +changeCurStatusDuration()
-		+displayMessage()
+    class SpecialStatus {
+        -statusName : String
+        -statusDuration : int
+        -curStatusDuration : int
+        -effectedEntity : Entities
+        -priority : int
+        -hpModifier : HPModifier
+        -attackModifier : AttackModifier
+        -defenceModifier : DefenceModifier
+        -speedModifier : SpeedModifier
+        -incomingDamageModifier : IncomingDamageModifier
+        -outcomingDamageModifier : OutgoingDamageModifier
+        +onHit()
+        +onStartTurn()
+        +onAllStartTurn()
+        +onStartRound()
+        +onEndTurn()
+        +onAllEndTurn()
+        +onEndRound()
+        +onDeath()
+        +onExpire()
+        +onInfliction()
+        +getStatusDuration()
+        +getCurStatusDuration()
+        +changeCurStatusDuration()
+        +displayMessage()
     }
 
-    class Arcane_Blast {
-	    -statusName : String
-	    -statusDuration : Int
-	    -curStatusDuration : Int
-	    -effectedEntity : Entities
-	    -priority : Int
-		+onInfliction()
-	    +getStatusDuration()
-	    +getCurStatusDuration()
-	    +changeCurStatusDuration()
+    class ArcaneBlast {
+        -statusName : String
+        -statusDuration : int
+        -curStatusDuration : int
+        -effectedEntity : Entities
+        -priority : int
+        +onInfliction()
+        +getStatusDuration()
+        +getCurStatusDuration()
+        +changeCurStatusDuration()
     }
 
     class Stun {
-	    -statusName : String
-	    -statusDuration : Int
-	    -curStatusDuration : Int
-	    -effectedEntity : Entities
-	    -priority : Int
-		+onEndTurn()
-		+onExpire()
-		+onInfliction()
-	    +getStatusDuration()
-	    +getCurStatusDuration()
-	    +changeCurStatusDuration()
+        -statusName : String
+        -statusDuration : int
+        -curStatusDuration : int
+        -effectedEntity : Entities
+        -priority : int
+        +onEndTurn()
+        +onExpire()
+        +onInfliction()
+        +getStatusDuration()
+        +getCurStatusDuration()
+        +changeCurStatusDuration()
     }
 
     class Defend {
-	    -statusName : String
-	    -statusDuration : Int
-	    -curStatusDuration : Int
-	    -effectedEntity : Entities
-	    -priority : Int
-	    +onEndTurn()
-		+onExpire()
-		+onInfliction()
-	    +getStatusDuration()
-	    +getCurStatusDuration()
-	    +changeCurStatusDuration()
+        -statusName : String
+        -statusDuration : int
+        -curStatusDuration : int
+        -effectedEntity : Entities
+        -priority : int
+        +onEndTurn()
+        +onExpire()
+        +onInfliction()
+        +getStatusDuration()
+        +getCurStatusDuration()
+        +changeCurStatusDuration()
     }
 
-    class Smoke_Bomb_Status {
-	    -statusName : String
-	    -statusDuration : Int
-	    -curStatusDuration : Int
-	    -effectedEntity : Entities
-	    -priority : Int
-		-outgoingDamageMultiplier : Double
-		+onEndTurn()
-	    +onExpire()
-		+onInfliction()
-	    +getStatusDuration()
-	    +getCurStatusDuration()
-	    +changeCurStatusDuration()
+    class SmokeBombStatus {
+        -statusName : String
+        -statusDuration : int
+        -curStatusDuration : int
+        -effectedEntity : Entities
+        -priority : int
+        -outgoingDamageMultiplier : double
+        +onEndTurn()
+        +onExpire()
+        +onInfliction()
+        +getStatusDuration()
+        +getCurStatusDuration()
+        +changeCurStatusDuration()
     }
-	class Item {
-		<<abstract>>
-		-itemName : String
-		-itemQuantity : Int
-		-perishable : Boolean
-		+getQuantity()
-		+setQuantity()
-		+useTarget()
-		+itemEffect()
-	}
-	class Potion {
-		-itemName : String
-		-itemQuantity : Int
-		-perishable : Boolean
-		+getQuantity()
-		+setQuantity()
-		+useTarget()
-		+itemEffect()
-	}
-	class Powerstone {
-		-itemName : String
-		-itemQuantity : Int
-		-perishable : Boolean
-		+getQuantity()
-		+setQuantity()
-		+useTarget()
-		+itemEffect()
-	}
-	class Smoke_Bomb_Item {
-		-itemName : String
-		-itemQuantity : Int
-		-perishable : Boolean
-		+getQuantity()
-		+setQuantity()
-		+useTarget()
-		+itemEffect()
-	}
-	Item <|-- Potion
-	Item <|-- Powerstone
-	Item <|-- Smoke_Bomb_Item
 
-	class Damage_Calculator {
-		-attacker : Combatant
-		-defender : Combatant[]
-		-baseDamage : Int
-		-finalDamage : Int
-		+calculateDamage()
-		+applyDefence()
-		+applyIncomingModifiers()
-		+executeDamage()
-		+executeOnHit()
-		+updateAliveStatus()
-	}
-	class Combatant {
-		<<abstract>>
-		-hp : HP_Attribute
-	    -attack : Attack_Attribute
-	    -defence : Defence_Attribute
-	    -speed : Speed_Attribute
-		-ongoingSpecialStatus : specialStatus[]
-		-aliveStatus : isAlive
-		-hasPermission : Permission
-		-triggers : Local_Triggers
-		+basicAttack()
-		+calculateEffectiveHP()
-		+calculateEffectiveAttack()
-		+calculateEffectiveDefence()
-		+calculateEffectiveSpeed()
-		+calculateEffectiveStats()
-	}
-	Combatant <|-- Player_Class
-	Combatant <|-- Enemy_Type
-	class Item_Bag {
-		-capacity : Int
-		-storage : Item[]
-		-owner : Combatant
-		+getCapacity()
-		+setCapacity()
-		+gainItem()
-		+loseItem()
-		+useItem()
-	}
-	class Speed_Tracker {
-		-turnOrder : Combatant[]
-		-currTurnOrder : Combatant
-		+updateTurnOrder()
-		+updateCurrTurnOrder()
-		+getTurnOrder()
-		+getCurrTurnOrder()
-		+removeFromTurnOrder()
-		+removeFromCurrTurnOrder()
-		+addToCurrTurnOrder()
-		+addToTurnOrder()
-	}
-	class Combat_Encounter {
-		-difficultyWaves : Difficulty
-		-turnOrder : Speed_Tracker
-		+startRound()
-		+endRound()
-		+startTurn()
-		+endTurn()
-		+updateAliveStatus()
-		+checkBackup()
-		+deployBackup()
-		+checkGameState()
-		+combatEnd()
-	}
-	class Entity_Wave {
-		-AllCharacters : Combatant[]
-		-numOfCharacters : Int
-		-waveNum : Int
-		+addToWave()
-		+removeFromWave()
-		+getWave()
-		+getNumOfCharacters()
-		+setNumOfCharacters()
-		+getWaveNum()
-		+setWaveNum()
-	}
-	class HP_Modifier {
-		-hpModifier : Int
-		+getHPModifier()
-		+setHPModifier()
-		+modifyHP(hitpoints : Int)
-	}
-	class Attack_Modifier {
-		-attackModifier : Int
-		+getAttackModifier()
-		+setAttackModifier()
-		+modifyAttack(attack : Int)
-	}
-	class Defence_Modifier {
-		-defenceModifier : Int
-		+getDefenceModifier()
-		+setDefenceModifier()
-		+modifierDefence(defence : Int)
-	}
-	class Speed_Modifier {
-		-speedModifier : Int
-		+getSpeedModifier()
-		+setSpeedModifier()
-		+modifySpeed(speed : Int)
-	}
-	class Incoming_Dmg_Modifier {
-		-incomingDamageModifier : Int
-		+getIncomingDamageModifier()
-		+setIncomingDamageModifier()
-		+modifyIncomingDamageModifier(damage : Int)
-	}
-	class Outgoing_Dmg_Modifier {
-		-outgoingDamageModifier : Int
-		+getOutgoingDamageModifier()
-		+setOutgoingDamageModifier()
-		+modifyOutgoingDamageModifier(damage : Int)
-	}
-	class Permissions {
-		-canAct : Boolean
-		-canAttack : Boolean
-		-canDefend : Boolean
-		-canUseItem : Boolean
-		+getCanAct()
-		+setCanAct()
-		+getCanAttack()
-		+setCanAttack()
-		+getCanDefend()
-		+setCanDefend()
-		+getCanUseItem()
-		+setCanUseItem()
-	}
-	class Target_Getter {
-		-targets : Combatant[]
-		+typeFilter()
-		+getTarget()
-	}
-	class Local_Triggers {
-		-localTriggerList : Map<Local_Trigger_Types, specialStatus[]>
-		+getLocalTrigger(Local_Trigger_Type type)
-		+addLocalTrigger(Local_Trigger_Type type,specialStatus status)
-        +removeLocalTrigger(Local_Trigger_Type type,specialStatus status)
-	}
-	class Local_Trigger_Types {
-		<<enumeration>>
-		ON_ATTACK
-		ON_GETTING_ATTACKED
-		ON_DEATH
-		ON_KILL
-		ON_START_TURN
-		ON_END_TURN
-	}
-	class Global_Triggers{
-		-globalTriggerList : Map<Global_Trigger_Types, specialStatus[]>
-		+getGlobalTrigger(Global_Trigger_Type type)
-		+addGlobalTrigger(Global_Trigger_Type type,specialStatus status)
-        +removeGlobalTrigger(Global_Trigger_Type type,specialStatus status)
-	}
-	class Global_Trigger_Types {
-		ON_START_ROUND
-		ON_END_ROUND
-	}
+    class Item {
+        <<abstract>>
+        -itemName : String
+        -itemQuantity : int
+        -perishable : boolean
+        +getQuantity()
+        +setQuantity()
+        +useTarget()
+        +itemEffect()
+    }
 
+    class Potion {
+        -itemName : String
+        -itemQuantity : int
+        -perishable : boolean
+        +getQuantity()
+        +setQuantity()
+        +useTarget()
+        +itemEffect()
+    }
 
-	<<interface>> Difficulty
-	<<interface>> Entities
-	<<abstract>> Player_Class
-	<<abstract>> Enemy_Type
-	<<abstract>> specialStatus
+    class Powerstone {
+        -itemName : String
+        -itemQuantity : int
+        -perishable : boolean
+        +getQuantity()
+        +setQuantity()
+        +useTarget()
+        +itemEffect()
+    }
 
-    specialStatus <|-- Arcane_Blast
-    specialStatus <|-- Stun
-    specialStatus <|-- Defend
-    specialStatus <|-- Smoke_Bomb_Status
+    class SmokeBombItem {
+        -itemName : String
+        -itemQuantity : int
+        -perishable : boolean
+        +getQuantity()
+        +setQuantity()
+        +useTarget()
+        +itemEffect()
+    }
+
+    Item <|-- Potion
+    Item <|-- Powerstone
+    Item <|-- SmokeBombItem
+
+    class DamageCalculator {
+        -attacker : Combatant
+        -defender : Combatant[]
+        -baseDamage : int
+        -finalDamage : int
+        +calculateDamage()
+        +applyDefence()
+        +applyIncomingModifiers()
+        +executeDamage()
+        +executeOnHit()
+        +updateAliveStatus()
+    }
+
+    class Combatant {
+        <<abstract>>
+        -hp : HPAttribute
+        -attack : AttackAttribute
+        -defence : DefenceAttribute
+        -speed : SpeedAttribute
+        -ongoingSpecialStatus : SpecialStatus[]
+        -aliveStatus : IsAlive
+        -hasPermission : Permission
+        -triggers : LocalTriggers
+        +basicAttack()
+        +calculateEffectiveHP()
+        +calculateEffectiveAttack()
+        +calculateEffectiveDefence()
+        +calculateEffectiveSpeed()
+        +calculateEffectiveStats()
+    }
+
+    Combatant <|-- PlayerClass
+    Combatant <|-- EnemyType
+
+    class ItemBag {
+        -capacity : int
+        -storage : Item[]
+        -owner : Combatant
+        +getCapacity()
+        +setCapacity()
+        +gainItem()
+        +loseItem()
+        +useItem()
+    }
+
+    class SpeedTracker {
+        -turnOrder : Combatant[]
+        -currTurnOrder : Combatant
+        +updateTurnOrder()
+        +updateCurrTurnOrder()
+        +getTurnOrder()
+        +getCurrTurnOrder()
+        +removeFromTurnOrder()
+        +removeFromCurrTurnOrder()
+        +addToCurrTurnOrder()
+        +addToTurnOrder()
+    }
+
+    class CombatEncounter {
+        -difficultyWaves : Difficulty
+        -turnOrder : SpeedTracker
+        +startRound()
+        +endRound()
+        +startTurn()
+        +endTurn()
+        +updateAliveStatus()
+        +checkBackup()
+        +deployBackup()
+        +checkGameState()
+        +combatEnd()
+    }
+
+    class EntityWave {
+        -AllCharacters : Combatant[]
+        -numOfCharacters : int
+        -waveNum : int
+        +addToWave()
+        +removeFromWave()
+        +getWave()
+        +getNumOfCharacters()
+        +setNumOfCharacters()
+        +getWaveNum()
+        +setWaveNum()
+    }
+
+    class HPModifier {
+        -hpModifier : int
+        +getHPModifier()
+        +setHPModifier()
+        +modifyHP(hitpoints : int)
+    }
+
+    class AttackModifier {
+        -attackModifier : int
+        +getAttackModifier()
+        +setAttackModifier()
+        +modifyAttack(attack : int)
+    }
+
+    class DefenceModifier {
+        -defenceModifier : int
+        +getDefenceModifier()
+        +setDefenceModifier()
+        +modifierDefence(defence : int)
+    }
+
+    class SpeedModifier {
+        -speedModifier : int
+        +getSpeedModifier()
+        +setSpeedModifier()
+        +modifySpeed(speed : int)
+    }
+
+    class IncomingDamageModifier {
+        -incomingDamageModifier : int
+        +getIncomingDamageModifier()
+        +setIncomingDamageModifier()
+        +modifyIncomingDamageModifier(damage : int)
+    }
+
+    class OutgoingDamageModifier {
+        -outgoingDamageModifier : int
+        +getOutgoingDamageModifier()
+        +setOutgoingDamageModifier()
+        +modifyOutgoingDamageModifier(damage : int)
+    }
+
+    class Permissions {
+        -canAct : boolean
+        -canAttack : boolean
+        -canDefend : boolean
+        -canUseItem : boolean
+        +getCanAct()
+        +setCanAct()
+        +getCanAttack()
+        +setCanAttack()
+        +getCanDefend()
+        +setCanDefend()
+        +getCanUseItem()
+        +setCanUseItem()
+    }
+
+    class TargetGetter {
+        -targets : Combatant[]
+        +typeFilter()
+        +getTarget()
+    }
+
+    class LocalTriggers {
+        -localTriggerList : Map<LocalTriggerTypes, SpecialStatus[]>
+        +getLocalTrigger(LocalTriggerTypes type)
+        +addLocalTrigger(LocalTriggerTypes type, SpecialStatus status)
+        +removeLocalTrigger(LocalTriggerTypes type, SpecialStatus status)
+    }
+
+    class LocalTriggerTypes {
+        <<enumeration>>
+        ON_ATTACK
+        ON_GETTING_ATTACKED
+        ON_DEATH
+        ON_KILL
+        ON_START_TURN
+        ON_END_TURN
+    }
+
+    class GlobalTriggers {
+        -globalTriggerList : Map<GlobalTriggerTypes, SpecialStatus[]>
+        +getGlobalTrigger(GlobalTriggerTypes type)
+        +addGlobalTrigger(GlobalTriggerTypes type, SpecialStatus status)
+        +removeGlobalTrigger(GlobalTriggerTypes type, SpecialStatus status)
+    }
+
+    class GlobalTriggerTypes {
+        <<enumeration>>
+        ON_START_ROUND
+        ON_END_ROUND
+    }
+
+    <<interface>> Difficulty
+    <<interface>> Entities
+    <<abstract>> PlayerClass
+    <<abstract>> EnemyType
+    <<abstract>> SpecialStatus
+
+    SpecialStatus <|-- ArcaneBlast
+    SpecialStatus <|-- Stun
+    SpecialStatus <|-- Defend
+    SpecialStatus <|-- SmokeBombStatus
     Difficulty <|.. Easy
     Difficulty <|.. Medium
     Difficulty <|.. Hard
     Entities <|.. Combatant
-    Player_Class <|-- Warrior
-    Player_Class <|-- Wizard
-    Enemy_Type <|-- Goblin
-    Enemy_Type <|-- WolfclassDiagram
-direction TB
-    class Difficulty {
-	    -combatWaves : Entity_Wave[]
-		-currentWave : Int
-	    +getAllWaves()
-		+getNextWave()
-	    +addCombatWave()
-		+removeCombatWave()
-    }
-
-    class Easy {
-	    -combatWaves : Entity_Wave[]
-		-currentWave : Int
-    }
-
-    class Medium {
-	    -combatWaves : Entity_Wave[]
-		-currentWave : Int
-    }
-
-    class Hard {
-	    -combatWaves : Entity_Wave[]
-		-currentWave : Int
-    }
-
-    class Entities {
-	    -playerControl : Boolean
-	    -ongoingSpecialStatus : specialStatus[]
-	    +action()
-    }
-
-    class Player_Class {
-	    -playerControl : Boolean
-	    -bag : Item_Bag
-	    -startingNumOfItems : Int
-	    -specialSkillName : String
-		-specialSkillCD : Int
-	    +useItem()
-	    +gainItem()
-	    +loseItem()
-	    +defend()
-	    +specialSkill(Enemy_type)
-		+getSpecialSkillCD()
-		+getSpecialSkillName()
-		+setSpecialSkillCD()
-	    +action()
-    }
-
-    class Enemy_Type {
-	    -playerControl : Boolean
-	    +action()
-    }
-
-    class HP_Attribute {
-	    -hp : Int
-	    -curHP : Int
-	    +getHP()
-	    +setHP()
-	    +changeHP()
-    }
-
-    class Attack_Attribute {
-	    -attack : Int
-	    +getAttack()
-	    +setAttack()
-	    +changeAttack()
-    }
-
-    class Defence_Attribute {
-	    -defence : Int
-	    +getDefence()
-	    +setDefence()
-	    +changeDefence()
-    }
-
-    class Speed_Attribute {
-	    -speed : Int
-	    +getSpeed()
-	    +setSpeed()
-	    +changeSpeed()
-    }
-
-	class isAlive {
-		-aliveStatus : Boolean
-		+getAliveStatus()
-		+setAliveStatus()
-	}
-
-    class Warrior {
-	    -hp : HP_Attribute
-	    -attack : Attack_Attribute
-	    -defence : Defence_Attribute
-	    -speed : Speed_Attribute
-	    -startingNumOfItems : Int
-	    -specialSkillName : String
-		-specialSkillCD : Int
-	    +specialSkill(Enemy_type)
-	    +action()
-    }
-
-    class Wizard {
-	    -hp : HP_Attribute
-	    -attack : Attack_Attribute
-	    -defence : Defence_Attribute
-	    -speed : Speed_Attribute
-	    -startingNumOfItems : Int
-	    -specialSkillName : String
-		-specialSkillCD : Int
-	    +specialSkill(Enemy_type)
-	    +action()
-    }
-
-    class Goblin {
-	    -hp : HP_Attribute
-	    -attack : Attack_Attribute
-	    -defence : Defence_Attribute
-	    -speed : Speed_Attribute
-	    +action()
-    }
-
-    class Wolf {
-	    -hp : HP_Attribute
-	    -attack : Attack_Attribute
-	    -defence : Defence_Attribute
-	    -speed : Speed_Attribute
-	    +action()
-    }
-
-    class specialStatus {
-	    -statusName : String
-	    -statusDuration : Int
-	    -curStatusDuration : Int
-	    -effectedEntity : Entities
-	    -priority : Int
-		-hpModifier : HP_Modifier
-		-attackModifier : Attack_Modifier
-		-defenceModifier : Defence_Modifier
-		-speedModifier : Speed_Modifier
-		-incomingDamageModifier : Incoming_Dmg_Modifier
-		-outcomingDamageModifier : Outgoing_Dmg_Modifier
-	    +onHit()
-		+onStartTurn()
-		+onAllStartTurn()
-		+onStartRound()
-		+onEndTurn()
-		+onAllEndTurn()
-		+onEndRound()
-		+onDeath()
-		+onExpire()
-		+onInfliction()
-	    +getStatusDuration()
-	    +getCurStatusDuration()
-	    +changeCurStatusDuration()
-		+displayMessage()
-    }
-
-    class Arcane_Blast {
-	    -statusName : String
-	    -statusDuration : Int
-	    -curStatusDuration : Int
-	    -effectedEntity : Entities
-	    -priority : Int
-		+onInfliction()
-	    +getStatusDuration()
-	    +getCurStatusDuration()
-	    +changeCurStatusDuration()
-    }
-
-    class Stun {
-	    -statusName : String
-	    -statusDuration : Int
-	    -curStatusDuration : Int
-	    -effectedEntity : Entities
-	    -priority : Int
-		+onEndTurn()
-		+onExpire()
-		+onInfliction()
-	    +getStatusDuration()
-	    +getCurStatusDuration()
-	    +changeCurStatusDuration()
-    }
-
-    class Defend {
-	    -statusName : String
-	    -statusDuration : Int
-	    -curStatusDuration : Int
-	    -effectedEntity : Entities
-	    -priority : Int
-	    +onEndTurn()
-		+onExpire()
-		+onInfliction()
-	    +getStatusDuration()
-	    +getCurStatusDuration()
-	    +changeCurStatusDuration()
-    }
-
-    class Smoke_Bomb_Status {
-	    -statusName : String
-	    -statusDuration : Int
-	    -curStatusDuration : Int
-	    -effectedEntity : Entities
-	    -priority : Int
-		-outgoingDamageMultiplier : Double
-		+onEndTurn()
-	    +onExpire()
-		+onInfliction()
-	    +getStatusDuration()
-	    +getCurStatusDuration()
-	    +changeCurStatusDuration()
-    }
-	class Item {
-		<<abstract>>
-		-itemName : String
-		-itemQuantity : Int
-		-perishable : Boolean
-		+getQuantity()
-		+setQuantity()
-		+useTarget()
-		+itemEffect()
-	}
-	class Potion {
-		-itemName : String
-		-itemQuantity : Int
-		-perishable : Boolean
-		+getQuantity()
-		+setQuantity()
-		+useTarget()
-		+itemEffect()
-	}
-	class Powerstone {
-		-itemName : String
-		-itemQuantity : Int
-		-perishable : Boolean
-		+getQuantity()
-		+setQuantity()
-		+useTarget()
-		+itemEffect()
-	}
-	class Smoke_Bomb_Item {
-		-itemName : String
-		-itemQuantity : Int
-		-perishable : Boolean
-		+getQuantity()
-		+setQuantity()
-		+useTarget()
-		+itemEffect()
-	}
-	Item <|-- Potion
-	Item <|-- Powerstone
-	Item <|-- Smoke_Bomb_Item
-
-	class Damage_Calculator {
-		-attacker : Combatant
-		-defender : Combatant[]
-		-baseDamage : Int
-		-finalDamage : Int
-		+calculateDamage()
-		+applyDefence()
-		+applyIncomingModifiers()
-		+executeDamage()
-		+executeOnHit()
-		+updateAliveStatus()
-	}
-	class Combatant {
-		<<abstract>>
-		-hp : HP_Attribute
-	    -attack : Attack_Attribute
-	    -defence : Defence_Attribute
-	    -speed : Speed_Attribute
-		-ongoingSpecialStatus : specialStatus[]
-		-aliveStatus : isAlive
-		-hasPermission : Permission
-		-triggers : Local_Triggers
-		+basicAttack()
-		+calculateEffectiveHP()
-		+calculateEffectiveAttack()
-		+calculateEffectiveDefence()
-		+calculateEffectiveSpeed()
-		+calculateEffectiveStats()
-	}
-	Combatant <|-- Player_Class
-	Combatant <|-- Enemy_Type
-	class Item_Bag {
-		-capacity : Int
-		-storage : Item[]
-		-owner : Combatant
-		+getCapacity()
-		+setCapacity()
-		+gainItem()
-		+loseItem()
-		+useItem()
-	}
-	class Speed_Tracker {
-		-turnOrder : Combatant[]
-		-currTurnOrder : Combatant
-		+updateTurnOrder()
-		+updateCurrTurnOrder()
-		+getTurnOrder()
-		+getCurrTurnOrder()
-		+removeFromTurnOrder()
-		+removeFromCurrTurnOrder()
-		+addToCurrTurnOrder()
-		+addToTurnOrder()
-	}
-	class Combat_Encounter {
-		-difficultyWaves : Difficulty
-		-turnOrder : Speed_Tracker
-		+startRound()
-		+endRound()
-		+startTurn()
-		+endTurn()
-		+updateAliveStatus()
-		+checkBackup()
-		+deployBackup()
-		+checkGameState()
-		+combatEnd()
-	}
-	class Entity_Wave {
-		-AllCharacters : Combatant[]
-		-numOfCharacters : Int
-		-waveNum : Int
-		+addToWave()
-		+removeFromWave()
-		+getWave()
-		+getNumOfCharacters()
-		+setNumOfCharacters()
-		+getWaveNum()
-		+setWaveNum()
-	}
-	class HP_Modifier {
-		-hpModifier : Int
-		+getHPModifier()
-		+setHPModifier()
-		+modifyHP(hitpoints : Int)
-	}
-	class Attack_Modifier {
-		-attackModifier : Int
-		+getAttackModifier()
-		+setAttackModifier()
-		+modifyAttack(attack : Int)
-	}
-	class Defence_Modifier {
-		-defenceModifier : Int
-		+getDefenceModifier()
-		+setDefenceModifier()
-		+modifierDefence(defence : Int)
-	}
-	class Speed_Modifier {
-		-speedModifier : Int
-		+getSpeedModifier()
-		+setSpeedModifier()
-		+modifySpeed(speed : Int)
-	}
-	class Incoming_Dmg_Modifier {
-		-incomingDamageModifier : Int
-		+getIncomingDamageModifier()
-		+setIncomingDamageModifier()
-		+modifyIncomingDamageModifier(damage : Int)
-	}
-	class Outgoing_Dmg_Modifier {
-		-outgoingDamageModifier : Int
-		+getOutgoingDamageModifier()
-		+setOutgoingDamageModifier()
-		+modifyOutgoingDamageModifier(damage : Int)
-	}
-	class Permissions {
-		-canAct : Boolean
-		-canAttack : Boolean
-		-canDefend : Boolean
-		-canUseItem : Boolean
-		+getCanAct()
-		+setCanAct()
-		+getCanAttack()
-		+setCanAttack()
-		+getCanDefend()
-		+setCanDefend()
-		+getCanUseItem()
-		+setCanUseItem()
-	}
-	class Target_Getter {
-		-targets : Combatant[]
-		+typeFilter()
-		+getTarget()
-	}
-	class Local_Triggers {
-		-localTriggerList : Map<Local_Trigger_Types, specialStatus[]>
-		+getLocalTrigger(Local_Trigger_Type type)
-		+addLocalTrigger(Local_Trigger_Type type,specialStatus status)
-        +removeLocalTrigger(Local_Trigger_Type type,specialStatus status)
-	}
-	class Local_Trigger_Types {
-		<<enumeration>>
-		ON_ATTACK
-		ON_GETTING_ATTACKED
-		ON_DEATH
-		ON_KILL
-		ON_START_TURN
-		ON_END_TURN
-	}
-	class Global_Triggers{
-		-globalTriggerList : Map<Global_Trigger_Types, specialStatus[]>
-		+getGlobalTrigger(Global_Trigger_Type type)
-		+addGlobalTrigger(Global_Trigger_Type type,specialStatus status)
-        +removeGlobalTrigger(Global_Trigger_Type type,specialStatus status)
-	}
-	class Global_Trigger_Types {
-		<<enumeration>>
-		ON_START_ROUND
-		ON_END_ROUND
-	}
-
-
-	<<interface>> Difficulty
-	<<interface>> Entities
-	<<abstract>> Player_Class
-	<<abstract>> Enemy_Type
-	<<abstract>> specialStatus
-
-    specialStatus <|-- Arcane_Blast
-    specialStatus <|-- Stun
-    specialStatus <|-- Defend
-    specialStatus <|-- Smoke_Bomb_Status
-    Difficulty <|.. Easy
-    Difficulty <|.. Medium
-    Difficulty <|.. Hard
-    Entities <|.. Combatant
-    Player_Class <|-- Warrior
-    Player_Class <|-- Wizard
-    Enemy_Type <|-- Goblin
-    Enemy_Type <|-- Wolf
+    PlayerClass <|-- Warrior
+    PlayerClass <|-- Wizard
+    EnemyType <|-- Goblin
+    EnemyType <|-- Wolf
