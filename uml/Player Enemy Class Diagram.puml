@@ -45,6 +45,7 @@ direction TB
         +getSpecialSkillName()
         +setSpecialSkillCD()
         +action()
+        +getBag() : ItemBag
     }
 
     class EnemyType {
@@ -133,6 +134,9 @@ direction TB
         +DamageCalculator(attacker : Combatant, defender : Combatant)
         +executeDamage() : int
     }
+    BasicAttack ..> DamageCalculator : uses
+    ShieldBash ..> DamageCalculator : uses
+    ArcaneBlast ..> DamageCalculator : uses
 
     class DefendAction {
         +execute(performer : Combatant, targets : List~Combatant~) : void
@@ -145,6 +149,9 @@ direction TB
         +execute(performer : Combatant, targets : List~Combatant~) : void
         +getName() : String
     }
+    UseItem --> Item : holds
+    UseItem --> PlayerClass : calls getBag()
+    UseItem --> ItemBag : uses
 
     class BasicAttack {
         +execute(performer : Combatant, targets : List~Combatant~) : void
@@ -186,16 +193,20 @@ direction TB
     }
 
     class ArcaneBlast {
-        -statusName : String
-        -statusDuration : int
-        -curStatusDuration : int
-        -effectedEntity : Entities
-        -priority : int
-        +onInfliction()
-        +getStatusDuration()
-        +getCurStatusDuration()
-        +changeCurStatusDuration()
+        +execute(performer : Combatant, targets : List~Combatant~) : void
+        +getName() : String
     }
+
+    class AttackBuffEffect {
+        -amount : int
+        -duration : int
+        +AttackBuffEffect(amount : int, duration : int)
+        +onApply(target : Combatant) : void
+        +onTurnStart(target : Combatant) : void
+        +isExpired() : boolean
+        +getName() : String
+    }
+    ArcaneBlast ..> AttackBuffEffect : creates
 
     class Stun {
         -statusName : String
@@ -285,18 +296,6 @@ direction TB
     Item <|-- Powerstone
     Item <|-- SmokeBombItem
 
-    class DamageCalculator {
-        -attacker : Combatant
-        -defender : Combatant[]
-        -baseDamage : int
-        -finalDamage : int
-        +calculateDamage()
-        +applyDefence()
-        +applyIncomingModifiers()
-        +executeDamage()
-        +executeOnHit()
-        +updateAliveStatus()
-    }
 
     class Combatant {
         <<abstract>>
@@ -314,6 +313,7 @@ direction TB
         +calculateEffectiveDefence()
         +calculateEffectiveSpeed()
         +calculateEffectiveStats()
+        +addEffect(effect : StatusEffect) : void
     }
 
     Combatant <|-- PlayerClass
@@ -469,7 +469,6 @@ direction TB
     <<abstract>> EnemyType
     <<abstract>> SpecialStatus
 
-    SpecialStatus <|-- ArcaneBlast
     SpecialStatus <|-- Stun
     SpecialStatus <|-- Defend
     SpecialStatus <|-- SmokeBombStatus
