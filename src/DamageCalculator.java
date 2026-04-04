@@ -12,7 +12,9 @@ public class DamageCalculator {
     }
 
     public int executeDamage() {
-        int damage = Math.max(0, attacker.getTotalAttack() - defender.getTotalDefense());
+        int atk = attacker.getTotalAttack();
+        int def = defender.getTotalDefense();
+        int damage = Math.max(0, atk - def);
         defender.getHealth().takeDamage(damage);
         System.out.println(attacker.getName() + " deals " + damage + " damage to " + defender.getName());
         return damage;
